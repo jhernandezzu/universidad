@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Control de Materias</title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2>Lista de Materias</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Profesor</th>
+            <th>Horario</th>
+            <th>Cupos</th>
+            <th>Fecha de Inicio</th>
+            <th>Fecha de Fin</th>
+            <th>Fecha de Creación</th>
+            <th>Fecha de Modificación</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for materia in materias %}
+            <tr>
+                <td>{{ materia.codigo }}</td>
+                <td>{{ materia.nombre }}</td>
+                <td>{{ materia.descripcion }}</td>
+                <td>{{ materia.profesor }}</td>
+                <td>{{ materia.horario }}</td>
+                <td>{{ materia.cupos }}</td>
+                <td>{{ materia.fecha_inicio.strftime('%Y-%m-%d') }}</td>
+                <td>{{ materia.fecha_fin.strftime('%Y-%m-%d') }}</td>
+                <td>{{ materia.fecha_creacion.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                <td>{{ materia.fecha_modificacion.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                <td>
+                    <a href="{{ url_for('editar_materia', codigo=materia.codigo) }}" class="btn btn-primary btn-sm">Editar</a>
+                    <a href="{{ url_for('eliminar_materia', codigo=materia.codigo) }}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ url_for('agregar_materia') }}" class="btn btn-success">Agregar Materia</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
